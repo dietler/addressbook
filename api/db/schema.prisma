@@ -15,7 +15,8 @@ model Family {
   id       Int      @id @default(autoincrement())
   lastName String
   address  String?
-  parents  Parent[]
+  Parents  Parent[]
+  Children Child[]
 }
 
 model Parent {
@@ -24,6 +25,14 @@ model Parent {
   familyId  Int
   firstName String
   sex       String?
+}
+
+model Child {
+  id          Int    @id @default(autoincrement())
+  family      Family @relation(fields: [familyId], references: [id])
+  familyId    Int
+  firstName   String
+  relativeAge Int?
 }
 
 model RW_DataMigration {

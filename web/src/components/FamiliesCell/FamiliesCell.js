@@ -4,7 +4,11 @@ export const QUERY = gql`
       id
       lastName
       address
-      parents {
+      Parents {
+        id
+        firstName
+      }
+      Children {
         id
         firstName
       }
@@ -32,7 +36,7 @@ export const Success = ({ families }) => {
             <a href="#" className="focus:outline-none">
               <span className="absolute inset-0" aria-hidden="true" />
               <p className="text-sm font-medium text-gray-900">
-                {family.parents.map((parent, index, array) => (
+                {family.Parents.map((parent, index, array) => (
                   <>
                     {parent.firstName} {index + 1 < array.length && <>&amp; </>}
                   </>
@@ -40,6 +44,9 @@ export const Success = ({ families }) => {
                 {family.lastName}
               </p>
               <p className="truncate text-sm text-gray-500">{family.address}</p>
+              {family.Children.map((child, index, array) => (
+                <>{child.firstName}</>
+              ))}
             </a>
           </div>
         </div>
