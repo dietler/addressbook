@@ -12,7 +12,16 @@ generator client {
 // to create migrations for them and apply to your dev DB.
 // TODO: Please remove the following example:
 model Family {
-  id       Int     @id @default(autoincrement())
+  id       Int      @id @default(autoincrement())
   lastName String
   address  String?
+  parents  Parent[]
+}
+
+model Parent {
+  id        Int     @id @default(autoincrement())
+  family    Family  @relation(fields: [familyId], references: [id])
+  familyId  Int
+  firstName String
+  sex       String?
 }
