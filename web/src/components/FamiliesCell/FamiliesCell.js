@@ -11,6 +11,7 @@ export const QUERY = gql`
       Children {
         id
         firstName
+        relativeAge
       }
     }
   }
@@ -44,9 +45,33 @@ export const Success = ({ families }) => {
                 {family.lastName}
               </p>
               <p className="truncate text-sm text-gray-500">{family.address}</p>
-              {family.Children.map((child, index, array) => (
-                <>{child.firstName}</>
-              ))}
+              <ul
+                role="list"
+                className="grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3"
+              >
+                {family.Children.map((child, index, array) => (
+                  <li
+                    key={child.id}
+                    className="col-span-1 divide-y divide-gray-200 rounded-lg bg-white shadow"
+                  >
+                    <div className="flex w-full items-center justify-between space-x-6 p-6">
+                      <div className="flex-1 truncate">
+                        <div className="flex items-center space-x-3">
+                          <h3 className="truncate text-sm font-medium text-gray-900">
+                            {child.firstName}
+                          </h3>
+                          <span className="inline-block flex-shrink-0 rounded-full bg-green-100 px-2 py-0.5 text-xs font-medium text-green-800">
+                            {child.relativeAge}
+                          </span>
+                        </div>
+                        <p className="mt-1 truncate text-sm text-gray-500">
+                          123
+                        </p>
+                      </div>
+                    </div>
+                  </li>
+                ))}
+              </ul>
             </a>
           </div>
         </div>
