@@ -28,3 +28,9 @@ export const deleteFamily = ({ id }) => {
     where: { id },
   })
 }
+
+export const Family = {
+  parents: (_obj, { root }) => {
+    return db.family.findUnique({ where: { id: root?.id } }).parents()
+  },
+}

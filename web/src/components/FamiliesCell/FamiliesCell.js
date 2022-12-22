@@ -1,11 +1,13 @@
-import ParentsCell from 'src/components/ParentsCell/ParentsCell'
-
 export const QUERY = gql`
   query FamiliesQuery {
     families {
       id
       lastName
       address
+      parents {
+        id
+        firstName
+      }
     }
   }
 `
@@ -20,7 +22,7 @@ export const Failure = ({ error }) => (
 
 export const Success = ({ families }) => {
   return (
-    <div className="grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3 lg:grids-cols-4">
+    <div className="lg:grids-cols-4 grid grid-cols-1 gap-4 sm:grid-cols-2 md:grid-cols-3">
       {families.map((family) => (
         <div
           key={family.id}
@@ -30,10 +32,14 @@ export const Success = ({ families }) => {
             <a href="#" className="focus:outline-none">
               <span className="absolute inset-0" aria-hidden="true" />
               <p className="text-sm font-medium text-gray-900">
+                {family.parents.map((parent, index, array) => (
+                  <>
+                    {parent.firstName} {index + 1 < array.length && <>&amp; </>}
+                  </>
+                ))}
                 {family.lastName}
               </p>
               <p className="truncate text-sm text-gray-500">{family.address}</p>
-              ({family.id})<ParentsCell id={family.id} />
             </a>
           </div>
         </div>

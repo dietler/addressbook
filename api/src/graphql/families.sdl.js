@@ -3,6 +3,7 @@ export const schema = gql`
     id: Int!
     lastName: String!
     address: String
+    parents: [Parent]!
   }
 
   type Query {

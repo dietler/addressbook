@@ -25,3 +25,10 @@ model Parent {
   firstName String
   sex       String?
 }
+
+model RW_DataMigration {
+  version    String   @id
+  name       String
+  startedAt  DateTime
+  finishedAt DateTime
+}
