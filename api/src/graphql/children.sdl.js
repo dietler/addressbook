@@ -5,6 +5,7 @@ export const schema = gql`
     familyId: Int!
     firstName: String!
     relativeAge: Int
+    sex: String
   }
 
   type Query {
@@ -16,12 +17,14 @@ export const schema = gql`
     familyId: Int!
     firstName: String!
     relativeAge: Int
+    sex: String
   }
 
   input UpdateChildInput {
     familyId: Int
     firstName: String
     relativeAge: Int
+    sex: String
   }
 
   type Mutation {

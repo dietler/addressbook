@@ -1,5 +1,5 @@
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
@@ -28,16 +28,10 @@ model Parent {
 }
 
 model Child {
-  id          Int    @id @default(autoincrement())
-  family      Family @relation(fields: [familyId], references: [id])
+  id          Int     @id @default(autoincrement())
+  family      Family  @relation(fields: [familyId], references: [id])
   familyId    Int
   firstName   String
   relativeAge Int?
-}
-
-model RW_DataMigration {
-  version    String   @id
-  name       String
-  startedAt  DateTime
-  finishedAt DateTime
+  sex         String?
 }
